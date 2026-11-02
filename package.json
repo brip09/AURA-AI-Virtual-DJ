@@ -1,2 +1,46 @@
-{"name":"aura-dj","version":"1.0.0","private":true,"scripts":{"sync":"npx cap sync android"},
-"dependencies":{"@capacitor/android":"^6.1.2","@capacitor/cli":"^6.1.2","@capacitor/core":"^6.1.2"}}
+
+{
+  "name": "aura-dj",
+  "version": "1.0.0",
+  "private": true,
+  "description": "AURA - AI Virtual DJ",
+  "main": "electron/main.js",
+  "scripts": {
+    "sync": "npx cap sync android",
+    "desktop": "electron .",
+    "dist:win": "electron-builder --win nsis portable"
+  },
+  "dependencies": {
+    "@capacitor/android": "^6.1.2",
+    "@capacitor/cli": "^6.1.2",
+    "@capacitor/core": "^6.1.2"
+  },
+  "devDependencies": {
+    "electron": "^35.0.0",
+    "electron-builder": "^26.0.12"
+  },
+  "build": {
+    "appId": "com.aura.virtualdj",
+    "productName": "AURA AI Virtual DJ",
+    "directories": {
+      "output": "dist"
+    },
+    "files": [
+      "electron/**/*",
+      "www/**/*",
+      "package.json"
+    ],
+    "win": {
+      "target": [
+        "nsis",
+        "portable"
+      ]
+    },
+    "nsis": {
+      "oneClick": false,
+      "allowToChangeInstallationDirectory": true,
+      "createDesktopShortcut": true,
+      "createStartMenuShortcut": true
+    }
+  }
+}
